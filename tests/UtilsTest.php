@@ -27,4 +27,18 @@ final class UtilsTest extends TestCase
         $point_b = Tuple::createPoint(1.0, 2.0, 3.0);
         $this->assertFalse(Util::compareTuple($point_a, $point_b));
     }
+
+    public function testVectorEqualityTrue()
+    {
+        $vector_a = Tuple::createVector(1.0, 2.0, 3.0);
+        $vector_b = Tuple::createVector(1.0, 2.0, 3.0);
+        $this->assertTrue(Util::compareTuple($vector_a, $vector_b));
+    }
+
+    public function testVectorEqualityFalse()
+    {
+        $vector_a = Tuple::createVector(-1.0, 2.0, 3.0);
+        $vector_b = Tuple::createVector(1.0, 2.0, 3.0);
+        $this->assertFalse(Util::compareTuple($vector_a, $vector_b));
+    }
 }
