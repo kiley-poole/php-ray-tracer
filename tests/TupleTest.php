@@ -48,92 +48,92 @@ final class TupleTest extends TestCase
     {
         $point = Tuple::createPoint(3, -2, 5);
         $vector = Tuple::createVector(-2, 3, 1);
-        $new_point = $point->addTuple($vector);
-        $this->assertEquals($new_point->x, 1);
-        $this->assertEquals($new_point->y, 1);
-        $this->assertEquals($new_point->z, 6);
-        $this->assertEquals($new_point->w, 1);
+        $point->addTuple($vector);
+        $this->assertEquals($point->x, 1);
+        $this->assertEquals($point->y, 1);
+        $this->assertEquals($point->z, 6);
+        $this->assertEquals($point->w, 1);
     }
 
     public function testAddVectorVectorGetVector()
     {
         $vector_a = Tuple::createVector(3, -2, 5);
         $vector_b = Tuple::createVector(-2, 3, 1);
-        $new_vector = $vector_a->addTuple($vector_b);
-        $this->assertEquals($new_vector->x, 1);
-        $this->assertEquals($new_vector->y, 1);
-        $this->assertEquals($new_vector->z, 6);
-        $this->assertEquals($new_vector->w, 0);
+        $vector_a->addTuple($vector_b);
+        $this->assertEquals($vector_a->x, 1);
+        $this->assertEquals($vector_a->y, 1);
+        $this->assertEquals($vector_a->z, 6);
+        $this->assertEquals($vector_a->w, 0);
     }
 
     public function testSubTwoPointsGetVector()
     {
         $point_a = Tuple::createPoint(3, 2, 1);
         $point_b = Tuple::createPoint(5, 6, 7);
-        $new_vector = $point_a->subTuple($point_b);
-        $this->assertEquals($new_vector->x, -2);
-        $this->assertEquals($new_vector->y, -4);
-        $this->assertEquals($new_vector->z, -6);
-        $this->assertEquals($new_vector->w, 0);
+        $point_a->subTuple($point_b);
+        $this->assertEquals($point_a->x, -2);
+        $this->assertEquals($point_a->y, -4);
+        $this->assertEquals($point_a->z, -6);
+        $this->assertEquals($point_a->w, 0);
     }
 
     public function testSubVectorFromPointGetPoint()
     {
         $point = Tuple::createPoint(3, 2, 1);
         $vector = Tuple::createVector(5, 6, 7);
-        $new_point = $point->subTuple($vector);
-        $this->assertEquals($new_point->x, -2);
-        $this->assertEquals($new_point->y, -4);
-        $this->assertEquals($new_point->z, -6);
-        $this->assertEquals($new_point->w, 1);
+        $point->subTuple($vector);
+        $this->assertEquals($point->x, -2);
+        $this->assertEquals($point->y, -4);
+        $this->assertEquals($point->z, -6);
+        $this->assertEquals($point->w, 1);
     }
 
     public function testSubVectorVectorGetVector()
     {
         $vector_a = Tuple::createVector(3, 2, 1);
         $vector_b = Tuple::createVector(5, 6, 7);
-        $new_vector = $vector_a->subTuple($vector_b);
-        $this->assertEquals($new_vector->x, -2);
-        $this->assertEquals($new_vector->y, -4);
-        $this->assertEquals($new_vector->z, -6);
-        $this->assertEquals($new_vector->w, 0);
+        $vector_a->subTuple($vector_b);
+        $this->assertEquals($vector_a->x, -2);
+        $this->assertEquals($vector_a->y, -4);
+        $this->assertEquals($vector_a->z, -6);
+        $this->assertEquals($vector_a->w, 0);
     }
 
     public function testNegateTuple()
     {
         $tuple = new Tuple(1, -2, 3, -4);
-        $negated_tuple = $tuple->negate();
-        $this->assertEquals($negated_tuple->x, -1);
-        $this->assertEquals($negated_tuple->y, 2);
-        $this->assertEquals($negated_tuple->z, -3);
-        $this->assertEquals($negated_tuple->w, 4);
+        $tuple->negate();
+        $this->assertEquals($tuple->x, -1);
+        $this->assertEquals($tuple->y, 2);
+        $this->assertEquals($tuple->z, -3);
+        $this->assertEquals($tuple->w, 4);
     }
 
     public function testMultiplyTuple(){
         $tuple = new Tuple(1, -2, 3, -4);
-        $multiply_tuple = $tuple->multiplyTuple(3.5);
-        $this->assertEquals($multiply_tuple->x, 3.5);
-        $this->assertEquals($multiply_tuple->y, -7);
-        $this->assertEquals($multiply_tuple->z, 10.5);
-        $this->assertEquals($multiply_tuple->w, -14);
+        $tuple->multiplyTuple(3.5);
+        $this->assertEquals($tuple->x, 3.5);
+        $this->assertEquals($tuple->y, -7);
+        $this->assertEquals($tuple->z, 10.5);
+        $this->assertEquals($tuple->w, -14);
     }
 
     public function testMultiplyTupleFraction(){
         $tuple = new Tuple(1, -2, 3, -4);
-        $multiply_tuple = $tuple->multiplyTuple(0.5);
-        $this->assertEquals($multiply_tuple->x, 0.5);
-        $this->assertEquals($multiply_tuple->y, -1);
-        $this->assertEquals($multiply_tuple->z, 1.5);
-        $this->assertEquals($multiply_tuple->w, -2);
+        $tuple->multiplyTuple(0.5);
+        $this->assertEquals($tuple->x, 0.5);
+        $this->assertEquals($tuple->y, -1);
+        $this->assertEquals($tuple->z, 1.5);
+        $this->assertEquals($tuple->w, -2);
     }
 
     public function testDivideTuple(){
         $tuple = new Tuple(1, -2, 3, -4);
-        $divide_tuple = $tuple->divideTuple(2);
-        $this->assertEquals($divide_tuple->x, 0.5);
-        $this->assertEquals($divide_tuple->y, -1);
-        $this->assertEquals($divide_tuple->z, 1.5);
-        $this->assertEquals($divide_tuple->w, -2);
+        $tuple->divideTuple(2);
+        $this->assertEquals($tuple->x, 0.5);
+        $this->assertEquals($tuple->y, -1);
+        $this->assertEquals($tuple->z, 1.5);
+        $this->assertEquals($tuple->w, -2);
     }
 
     public function testMagnitudeOne(){
