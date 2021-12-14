@@ -7,7 +7,7 @@ class Tuple
     public float $z;
     public float $w;
 
-    public function __construct(float $x = 0.0, float $y = 0.0, float $z = 0.0, float $w = 0.0, bool $point = false)
+    public function __construct(float $x = 0.0, float $y = 0.0, float $z = 0.0, float $w = 0.0)
     {
         $this->x = $x;
         $this->y = $y;

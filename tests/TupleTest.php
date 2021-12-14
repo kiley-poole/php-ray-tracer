@@ -11,7 +11,6 @@ final class TupleTest extends TestCase
         $this->assertEquals($tuple->y, -4.2);
         $this->assertEquals($tuple->z, 3.1);
         $this->assertEquals($tuple->w, 1.0);
-
     }
 
     public function testTupleIsVector()

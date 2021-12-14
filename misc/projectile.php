@@ -43,6 +43,7 @@ class Game
 $projectile = new Projectile;
 $environment = new Environment;
 
+echo($projectile->velocity->x . "\n");
 while($projectile->position->y > 0) {
     echo($projectile->position->x . ' ' . $projectile->position->y . ' '. $projectile->position->z . "\n");
     Game::tick($environment, $projectile);
