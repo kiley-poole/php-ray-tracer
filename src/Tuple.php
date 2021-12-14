@@ -15,46 +15,49 @@ class Tuple
         $this->w = $w;
     }
 
-    public function addTuple(Tuple $tuple): void
+    public function addTuple(Tuple $tuple): Tuple
     {
-        $this->x += $tuple->x;
-        $this->y += $tuple->y;
-        $this->z += $tuple->z;
-        $this->w += $tuple->w;
- 
+        $x = $this->x + $tuple->x;
+        $y = $this->y + $tuple->y;
+        $z = $this->z + $tuple->z;
+        $w = $this->w + $tuple->w;
+        return new Tuple($x, $y, $z, $w);
     }
 
-    public function subTuple(Tuple $tuple): void
+    public function subTuple(Tuple $tuple): Tuple
     {
-        $this->x -=  $tuple->x;
-        $this->y -=  $tuple->y;
-        $this->z -=  $tuple->z;
-        $this->w -=  $tuple->w;
+        $x = $this->x - $tuple->x;
+        $y = $this->y - $tuple->y;
+        $z = $this->z - $tuple->z;
+        $w = $this->w - $tuple->w;
+        return new Tuple($x, $y, $z, $w);
     }
     
-    public function negate(): void
+    public function negate(): Tuple
     {
-        $this->x = -$this->x; 
-        $this->y = -$this->y; 
-        $this->z = -$this->z; 
-        $this->w = -$this->w;
+        $x = -$this->x; 
+        $y = -$this->y; 
+        $z = -$this->z; 
+        $w = -$this->w;
+        return new Tuple($x, $y, $z, $w);
     }
 
-    public function multiplyTuple(float $value): void
+    public function multiplyTuple(float $value): Tuple
     {
-        $this->x *= $value; 
-        $this->y *= $value; 
-        $this->z *= $value; 
-        $this->w *= $value;
+        $x = $this->x * $value; 
+        $y = $this->y * $value; 
+        $z = $this->z * $value; 
+        $w = $this->w * $value;
+        return new Tuple($x, $y, $z, $w);
     }
 
-    public function divideTuple(float $value): void
+    public function divideTuple(float $value): Tuple
     {
-        $this->x /= $value; 
-        $this->y /= $value; 
-        $this->z /= $value; 
-        $this->w /= $value;
-         
+        $x = $this->x / $value; 
+        $y = $this->y / $value; 
+        $z = $this->z / $value; 
+        $w = $this->w / $value;
+        return new Tuple($x, $y, $z, $w); 
     }
 
     public function magnitude(): float
@@ -63,8 +66,37 @@ class Tuple
             ($this->x*$this->x) +
             ($this->y*$this->y) +
             ($this->z*$this->z) +
-            ($this->w*$this->w)
+            ($this->w*$this->w) 
         );
+    }
+
+    public function normalize()
+    {
+        $magnitude = $this->magnitude();
+        $x = $this->x / $magnitude; 
+        $y = $this->y / $magnitude; 
+        $z = $this->z / $magnitude; 
+        $w = $this->w / $magnitude; 
+        return new Tuple($x, $y, $z, $w);
+    }
+
+    public function dotProduct(Tuple $vector): float
+    {
+        return (
+            ($this->x * $vector->x) + 
+            ($this->y * $vector->y) + 
+            ($this->z * $vector->z) + 
+            ($this->w * $vector->w)  
+        );
+    }
+    
+    public function crossProduct(Tuple $vector)
+    {
+        $cross_x = ($this->y * $vector->z) - ($this->z * $vector->y);
+        $cross_y = ($this->z * $vector->x) - ($this->x * $vector->z);
+        $cross_z = ($this->x * $vector->y) - ($this->y * $vector->x);
+
+        return Tuple::createVector($cross_x, $cross_y, $cross_z);
     }
 
     // TODO Move creates to factory class
