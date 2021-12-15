@@ -56,4 +56,21 @@ final class MatrixTest extends TestCase
         ];
         $this->assertTrue(Matrix::compare($matrix_a, $matrix_b));
     }
+
+    public function testMatrixComparisonFalse()
+    {
+        $matrix_a = [
+            [1,2,3,4],
+            [4,5,6,7],
+            [8,9,10,11],
+            [12,13,14,13]
+        ];
+        $matrix_b = [
+            [1,2,3,4],
+            [4,5,6,7],
+            [8,9,10,11],
+            [12,13,14,15]
+        ];
+        $this->assertFalse(Matrix::compare($matrix_a, $matrix_b));
+    }
 }
