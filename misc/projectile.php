@@ -1,6 +1,8 @@
 <?php
 
 include '../src/Tuple.php';
+include '../src/Canvas.php';
+include '../src/Color.php';
 
 class Projectile
 {
@@ -10,7 +12,7 @@ class Projectile
     public function __construct()
     {
         $this->position = Tuple::createPoint(0, 1, 0);
-        $this->velocity = Tuple::createVector(1, 1, 0)->normalize();
+        $this->velocity = Tuple::createVector(1, 1.8, 0)->normalize()->multiplyTuple(11.25);
     }
 }
 
@@ -42,9 +44,14 @@ class Game
 
 $projectile = new Projectile;
 $environment = new Environment;
+$canvas = new Canvas(900, 500);
 
-echo($projectile->velocity->x . "\n");
 while($projectile->position->y > 0) {
-    echo($projectile->position->x . ' ' . $projectile->position->y . ' '. $projectile->position->z . "\n");
+    $x = (int)round($projectile->position->x);
+    $y = $canvas->height - (int)round($projectile->position->y);
+    $red = new Color(1,0,0);
+    $canvas->writeColor($red, $y, $x);
     Game::tick($environment, $projectile);
 }
+$ppm_string = $canvas->canvasToPPM();
+file_put_contents("test.ppm", $ppm_string);
